@@ -4,7 +4,7 @@
    ============================================================ */
 
 (function () {
-  const PLATES = ["parcours", "sites", "n8n", "agents"];
+  const PLATES = ["parcours", "sites", "n8n", "agents", "animapp"];
 
   function show(id, push) {
     if (!PLATES.includes(id)) id = PLATES[0];
