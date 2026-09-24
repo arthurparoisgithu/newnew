@@ -1,9 +1,9 @@
 # Dossier Arthur Parois — candidature alternance
 
-Site statique qui regroupe mes travaux en quatre planches : parcours et CV,
+Site statique qui regroupe mes travaux en quatre planches : parcours et CV,\
 sites web, n8n, et une démonstration de workflow multi-agents.
 
-Aucune dépendance, aucune étape de build : ouvrez `index.html`, ou servez le
+Aucune dépendance, aucune étape de build : ouvrez `index.html`, ou servez le\
 dossier tel quel (GitHub Pages, Netlify, n'importe quel hébergeur statique).
 
 ```
@@ -22,59 +22,59 @@ demos/n8n-fonctions.html                cours interactif « Les fonctions n8n, e
 
 ## AnimApp — le générateur d'activités d'animation
 
-L'application centrale de ce dossier : **AnimApp**, un générateur d'activités
-clé en main pour animateurs. Vous choisissez une catégorie, réglez quelques
-paramètres, et l'IA produit une activité complète — déroulé minuté, slides,
+L'application centrale de ce dossier : **AnimApp**, un générateur d'activités\
+clé en main pour animateurs. Vous choisissez une catégorie, réglez quelques\
+paramètres, et l'IA produit une activité complète — déroulé minuté, slides,\
 fiches imprimables et diaporama de projection.
 
 ### Page d'accueil — le catalogue de catégories
 
 ![Catalogue de catégories AnimApp](assets/img/animation/app-accueil.png)
 
-Sept catégories couvrent tous les moments d'un séjour : **Grands Jeux du Soir**,
-**Instants Apéro**, **Quiz**, **Dingbats**, **Concours**, **Escape Game** et
+Sept catégories couvrent tous les moments d'un séjour : **Grands Jeux du Soir**,\
+**Instants Apéro**, **Quiz**, **Dingbats**, **Concours**, **Escape Game** et\
 **Karaoké**. Chaque carte mène directement à son formulaire de configuration.
 
 ### Configuration de l'activité
 
 ![Formulaire de génération AnimApp](assets/img/animation/app-generation.png)
 
-L'animateur saisit un thème (ici « Le cinéma des années 80 ») puis règle l'âge
-du public, le nombre de participants, la durée, le niveau de difficulté et
-l'ambiance recherchée. Un clic sur **Générer l'activité** lance la production
+L'animateur saisit un thème (ici « Le cinéma des années 80 ») puis règle l'âge\
+du public, le nombre de participants, la durée, le niveau de difficulté et\
+l'ambiance recherchée. Un clic sur **Générer l'activité** lance la production\
 par l'IA.
 
 ### Le résultat généré — vue d'ensemble
 
 ![Résultat généré AnimApp](assets/img/animation/app-resultat.png)
 
-L'activité arrive complète et prête à animer : titre accrocheur, résumé,
-matériel nécessaire et règles du jeu. Une barre d'onglets donne accès à toutes
-les facettes (Vue d'ensemble, Déroulé, Conseils, Quiz, Slides, Fiches,
-Playlist), et les boutons **Régénérer**, **Modifier**, **Sauvegarder**,
+L'activité arrive complète et prête à animer : titre accrocheur, résumé,\
+matériel nécessaire et règles du jeu. Une barre d'onglets donne accès à toutes\
+les facettes (Vue d'ensemble, Déroulé, Conseils, Quiz, Slides, Fiches,\
+Playlist), et les boutons **Régénérer**, **Modifier**, **Sauvegarder**,\
 **Imprimer** et **Diaporama** pilotent la suite.
 
 ### Le déroulé minuté, étape par étape
 
 ![Déroulé de l'activité AnimApp](assets/img/animation/app-deroule.png)
 
-Le cœur opérationnel pour l'animateur : chaque étape est numérotée, minutée et
-décrite précisément (accueil, présentation des règles, manches successives,
+Le cœur opérationnel pour l'animateur : chaque étape est numérotée, minutée et\
+décrite précisément (accueil, présentation des règles, manches successives,\
 correction, finale et remise des lots). Tout est prêt à être suivi le jour J.
 
 ### Le mode diaporama, pour projeter devant le groupe
 
 ![Diaporama plein écran AnimApp](assets/img/animation/app-diaporama.png)
 
-Un mode plein écran génère automatiquement un diaporama d'animation (ici 8
-slides) : écran de bienvenue, consignes et questions défilent proprement, prêts
+Un mode plein écran génère automatiquement un diaporama d'animation (ici 8\
+slides) : écran de bienvenue, consignes et questions défilent proprement, prêts\
 à être projetés devant les participants.
 
 ## Le CV en PDF
 
-`cv.html` est la source unique du CV téléchargeable : même contenu que le bloc
-« Le CV, en entier » de la planche 01, mis en page pour une feuille A4. Le
-bouton *Télécharger le PDF* de la page d'accueil pointe vers le fichier déjà
+`cv.html` est la source unique du CV téléchargeable : même contenu que le bloc\
+« Le CV, en entier » de la planche 01, mis en page pour une feuille A4. Le\
+bouton _Télécharger le PDF_ de la page d'accueil pointe vers le fichier déjà\
 généré, pour qu'un recruteur n'ait rien à installer.
 
 Après avoir modifié `cv.html`, régénérez le PDF :
@@ -83,53 +83,54 @@ Après avoir modifié `cv.html`, régénérez le PDF :
 ./scripts/generer-cv-pdf.sh
 ```
 
-Le script incruste d'abord les polices Google en base64 dans une copie
-temporaire, puis imprime la page avec un Chromium sans interface. Le rendu ne
-dépend donc d'aucun accès réseau au moment de l'impression. Renseignez
-`CHROME=/chemin/vers/chrome` si aucun navigateur n'est trouvé automatiquement.
+Le script incruste d'abord les polices Google en base64 dans une copie\
+temporaire, puis imprime la page avec un Chromium sans interface. Le rendu ne\
+dépend donc d'aucun accès réseau au moment de l'impression. Renseignez\
+`CHROME=/chemin/vers/chrome` si aucun navigateur n'est trouvé automatiquement.\
 Le texte du PDF reste sélectionnable et indexable.
 
 ## Le workflow n8n
 
-`assets/n8n/webreset-audit-agents.json` s'importe dans un canevas n8n vide.
-Il attend trois identifiants : un modèle de chat pour les agents, un compte de
+`assets/n8n/webreset-audit-agents.json` s'importe dans un canevas n8n vide.\
+Il attend trois identifiants : un modèle de chat pour les agents, un compte de\
 messagerie pour l'alerte interne, une base Postgres pour l'archivage.
 
 ![Workflow n8n — audit multi-agents](assets/img/animation/n8n-workflow.png)
 
-Chaîne : webhook → normalisation → récupération de la page → extraction de
-18 signaux mesurables → trois agents spécialisés en parallèle (visibilité,
-conversion, conformité) → fusion → agent superviseur → aiguillage sur le score
+Chaîne : webhook → normalisation → récupération de la page → extraction de\
+18 signaux mesurables → trois agents spécialisés en parallèle (visibilité,\
+conversion, conformité) → fusion → agent superviseur → aiguillage sur le score\
 → alerte + archivage → réponse.
 
-La console de la planche 04 **rejoue** des exécutions capturées, hors ligne :
-elle ne fait aucun appel réseau, et les cabinets des trois dossiers de
+La console de la planche 04 **rejoue** des exécutions capturées, hors ligne :\
+elle ne fait aucun appel réseau, et les cabinets des trois dossiers de\
 démonstration sont anonymisés.
 
 ## Publier sur GitHub Pages
 
-Réglages du dépôt → Pages → *Deploy from a branch* → branche courante, dossier `/`.
+Réglages du dépôt → Pages → _Deploy from a branch_ → branche courante, dossier `/`.
 
 ## Les deux sites clients
 
-`projets/kine` et `projets/webreset` contiennent les applications Next.js,
+`projets/kine` et `projets/webreset` contiennent les applications Next.js,\
 préparées pour l'export statique et prêtes à être publiées sur GitHub Pages.
 
 ```bash
 ./scripts/publier-les-sites.sh
 ```
 
-Le script pousse `projets/kine` vers `arthurparoisgithu/kin-` et
-`projets/webreset` vers `arthurparoisgithu/web-rest`. Chaque dépôt embarque son
+Le script pousse `projets/kine` vers `arthurparoisgithu/kin-` et\
+`projets/webreset` vers `arthurparoisgithu/web-rest`. Chaque dépôt embarque son\
 propre workflow GitHub Actions : il construit l'export statique et le publie.
 
-- https://arthurparoisgithu.github.io/kin-/
-- https://arthurparoisgithu.github.io/web-rest/
+* [https://arthurparoisgithu.github.io/kin-/](https://arthurparoisgithu.github.io/kin-/)
+
+* [https://arthurparoisgithu.github.io/web-rest/](https://arthurparoisgithu.github.io/web-rest/)
 
 ## Publier le dossier lui-même
 
-La branche `gh-pages` de ce dépôt contient le dossier prêt à être servi.
-Pour le mettre en ligne : rendre le dépôt public, puis
-Settings → Pages → Source : *Deploy from a branch* → `gh-pages` / `(root)`.
+La branche `gh-pages` de ce dépôt contient le dossier prêt à être servi.\
+Pour le mettre en ligne : rendre le dépôt public, puis\
+Settings → Pages → Source : _Deploy from a branch_ → `gh-pages` / `(root)`.
 
-Adresse obtenue : https://arthurparoisgithu.github.io/newnew/
+Adresse obtenue : [https://arthurparoisgithu.github.io/newnew/](https://arthurparoisgithu.github.io/newnew/)
