@@ -8,37 +8,55 @@ dossier tel quel (GitHub Pages, Netlify, n'importe quel hébergeur statique).
 
 ---
 
-## Le générateur de jeux d'animation
+## AnimApp — le générateur d'activités d'animation
 
-L'application centrale de ce dossier : un générateur de contenu validé pour animateurs socioculturels.
+L'application centrale de ce dossier : **AnimApp**, un générateur d'activités
+clé en main pour animateurs. Vous choisissez une catégorie, réglez quelques
+paramètres, et l'IA produit une activité complète — déroulé minuté, slides,
+fiches imprimables et diaporama de projection.
 
-### Interface principale — catalogue de formats
+### Page d'accueil — le catalogue de catégories
 
-![Catalogue de formats de jeux](assets/img/animation/app-accueil.png)
+![Catalogue de catégories AnimApp](assets/img/animation/app-accueil.png)
 
-Dix formats couverts par trois primitives de génération (`question`, `enigme`, `vrai_faux`). Filtrage par public, moment, matériel.
+Sept catégories couvrent tous les moments d'un séjour : **Grands Jeux du Soir**,
+**Instants Apéro**, **Quiz**, **Dingbats**, **Concours**, **Escape Game** et
+**Karaoké**. Chaque carte mène directement à son formulaire de configuration.
 
-### Formulaire de génération
+### Configuration de l'activité
 
-![Formulaire de génération](assets/img/animation/app-generation.png)
+![Formulaire de génération AnimApp](assets/img/animation/app-generation.png)
 
-L'animateur choisit un format, saisit un thème et un public. Le modèle génère le contenu, un juge LLM valide la cohérence avant tout enregistrement.
+L'animateur saisit un thème (ici « Le cinéma des années 80 ») puis règle l'âge
+du public, le nombre de participants, la durée, le niveau de difficulté et
+l'ambiance recherchée. Un clic sur **Générer l'activité** lance la production
+par l'IA.
 
-### Résultats générés et validés
+### Le résultat généré — vue d'ensemble
 
-![Résultats validés](assets/img/animation/app-resultat.png)
+![Résultat généré AnimApp](assets/img/animation/app-resultat.png)
 
-### Mode projection plein écran
+L'activité arrive complète et prête à animer : titre accrocheur, résumé,
+matériel nécessaire et règles du jeu. Une barre d'onglets donne accès à toutes
+les facettes (Vue d'ensemble, Déroulé, Conseils, Quiz, Slides, Fiches,
+Playlist), et les boutons **Régénérer**, **Modifier**, **Sauvegarder**,
+**Imprimer** et **Diaporama** pilotent la suite.
 
-![Mode projection](assets/img/animation/app-projection.png)
+### Le déroulé minuté, étape par étape
 
-Conçu pour être projeté devant le groupe. Les équipes répondent, l'animateur révèle au clic.
+![Déroulé de l'activité AnimApp](assets/img/animation/app-deroule.png)
 
-### Métriques de validation
+Le cœur opérationnel pour l'animateur : chaque étape est numérotée, minutée et
+décrite précisément (accueil, présentation des règles, manches successives,
+correction, finale et remise des lots). Tout est prêt à être suivi le jour J.
 
-![Taux de rejet LLM](assets/img/animation/app-metriques.png)
+### Le mode diaporama, pour projeter devant le groupe
 
-Le juge LLM rejette silencieusement les items incohérents. Le tableau de bord expose le taux de rejet par format — levier principal du coût d'API.
+![Diaporama plein écran AnimApp](assets/img/animation/app-diaporama.png)
+
+Un mode plein écran génère automatiquement un diaporama d'animation (ici 8
+slides) : écran de bienvenue, consignes et questions défilent proprement, prêts
+à être projetés devant les participants.
 
 ---
 
@@ -66,7 +84,7 @@ assets/css/dossier.css                  feuille de style unique, thèmes clair e
 assets/js/dossier.js                    onglets, thème, chargement différé des pièces jointes
 assets/js/audit-agents.js              rejeu du workflow d'agents + les trois dossiers figés
 assets/n8n/webreset-audit-agents.json  le workflow n8n, importable tel quel (18 nœuds)
-assets/img/animation/                   captures de l'application de jeux d'animation
+assets/img/animation/                   captures d'écran d'AnimApp et du workflow n8n
 demos/n8n-fonctions.html               cours interactif « Les fonctions n8n, en pratique »
 ```
 
