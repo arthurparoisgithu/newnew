@@ -6,7 +6,19 @@ sites web, n8n, et une démonstration de workflow multi-agents.
 Aucune dépendance, aucune étape de build : ouvrez `index.html`, ou servez le
 dossier tel quel (GitHub Pages, Netlify, n'importe quel hébergeur statique).
 
----
+```
+index.html                              les quatre planches (onglets côté client)
+cv.html                                 le CV seul, mis en page pour l'impression A4
+assets/cv/arthur-parois-cv.pdf          le même CV en PDF, texte sélectionnable
+scripts/generer-cv-pdf.sh               refabrique ce PDF à partir de cv.html
+assets/css/dossier.css                  feuille de style unique, thèmes clair et sombre
+assets/js/dossier.js                    onglets, thème, chargement différé des pièces jointes
+assets/js/audit-agents.js               rejeu du workflow d'agents + les trois dossiers figés
+assets/n8n/webreset-audit-agents.json   le workflow n8n, importable tel quel (17 nœuds)
+assets/img/                             visuels des projets kiné et Myrtille Sauvage
+assets/img/animation/                   captures d'écran d'AnimApp et du workflow n8n
+demos/n8n-fonctions.html                cours interactif « Les fonctions n8n, en pratique »
+```
 
 ## AnimApp — le générateur d'activités d'animation
 
@@ -58,35 +70,41 @@ Un mode plein écran génère automatiquement un diaporama d'animation (ici 8
 slides) : écran de bienvenue, consignes et questions défilent proprement, prêts
 à être projetés devant les participants.
 
----
+## Le CV en PDF
 
-## Le workflow n8n — audit multi-agents
+`cv.html` est la source unique du CV téléchargeable : même contenu que le bloc
+« Le CV, en entier » de la planche 01, mis en page pour une feuille A4. Le
+bouton *Télécharger le PDF* de la page d'accueil pointe vers le fichier déjà
+généré, pour qu'un recruteur n'ait rien à installer.
+
+Après avoir modifié `cv.html`, régénérez le PDF :
+
+```bash
+./scripts/generer-cv-pdf.sh
+```
+
+Le script incruste d'abord les polices Google en base64 dans une copie
+temporaire, puis imprime la page avec un Chromium sans interface. Le rendu ne
+dépend donc d'aucun accès réseau au moment de l'impression. Renseignez
+`CHROME=/chemin/vers/chrome` si aucun navigateur n'est trouvé automatiquement.
+Le texte du PDF reste sélectionnable et indexable.
+
+## Le workflow n8n
 
 `assets/n8n/webreset-audit-agents.json` s'importe dans un canevas n8n vide.
+Il attend trois identifiants : un modèle de chat pour les agents, un compte de
+messagerie pour l'alerte interne, une base Postgres pour l'archivage.
 
-![Workflow n8n — 18 nœuds](assets/img/animation/n8n-workflow.png)
+![Workflow n8n — audit multi-agents](assets/img/animation/n8n-workflow.png)
 
-**Chaîne complète :**
-webhook → normalisation → récupération de la page → extraction de 18 signaux mesurables → **trois agents spécialisés en parallèle** (visibilité, conversion, conformité) → fusion → agent superviseur → aiguillage sur le score → alerte Gmail + archivage Google Sheets → réponse.
+Chaîne : webhook → normalisation → récupération de la page → extraction de
+18 signaux mesurables → trois agents spécialisés en parallèle (visibilité,
+conversion, conformité) → fusion → agent superviseur → aiguillage sur le score
+→ alerte + archivage → réponse.
 
-Il attend trois identifiants : un modèle de chat (Anthropic Claude), un compte Gmail pour l'alerte interne, une base Postgres pour l'archivage.
-
----
-
-## Structure du dossier
-
-```
-index.html                              les quatre planches (onglets côté client)
-cv.html                                 le CV seul, mis en page pour l'impression A4
-assets/cv/arthur-parois-cv.pdf          le même CV en PDF, texte sélectionnable
-scripts/generer-cv-pdf.sh               refabrique ce PDF à partir de cv.html
-assets/css/dossier.css                  feuille de style unique, thèmes clair et sombre
-assets/js/dossier.js                    onglets, thème, chargement différé des pièces jointes
-assets/js/audit-agents.js              rejeu du workflow d'agents + les trois dossiers figés
-assets/n8n/webreset-audit-agents.json  le workflow n8n, importable tel quel (18 nœuds)
-assets/img/animation/                   captures d'écran d'AnimApp et du workflow n8n
-demos/n8n-fonctions.html               cours interactif « Les fonctions n8n, en pratique »
-```
+La console de la planche 04 **rejoue** des exécutions capturées, hors ligne :
+elle ne fait aucun appel réseau, et les cabinets des trois dossiers de
+démonstration sont anonymisés.
 
 ## Publier sur GitHub Pages
 
@@ -101,10 +119,17 @@ préparées pour l'export statique et prêtes à être publiées sur GitHub Page
 ./scripts/publier-les-sites.sh
 ```
 
+Le script pousse `projets/kine` vers `arthurparoisgithu/kin-` et
+`projets/webreset` vers `arthurparoisgithu/web-rest`. Chaque dépôt embarque son
+propre workflow GitHub Actions : il construit l'export statique et le publie.
+
 - https://arthurparoisgithu.github.io/kin-/
 - https://arthurparoisgithu.github.io/web-rest/
 
 ## Publier le dossier lui-même
 
-Adresse une fois rendu public + Pages activé :
-https://arthurparoisgithu.github.io/newnew/
+La branche `gh-pages` de ce dépôt contient le dossier prêt à être servi.
+Pour le mettre en ligne : rendre le dépôt public, puis
+Settings → Pages → Source : *Deploy from a branch* → `gh-pages` / `(root)`.
+
+Adresse obtenue : https://arthurparoisgithu.github.io/newnew/
