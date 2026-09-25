@@ -777,28 +777,6 @@
 
       <section>
         <div class="section-rule">
-          <h3>Le workflow d'audit multi-agents</h3>
-          <span class="line"></span>
-        </div>
-        <div class="prose">
-          <p>
-            En complément du cours sur les fonctions, j'ai construit un workflow n8n complet qui automatise
-            l'audit de sites web que je faisais manuellement. Dix-huit nœuds orchestrent quatre agents Claude
-            spécialisés qui analysent en parallèle la visibilité locale, le parcours de conversion et la
-            conformité déontologique d'un cabinet.
-          </p>
-          <p>
-            Le workflow est disponible en JSON dans <span class="mono">assets/n8n/webreset-audit-agents.json</span>
-            et rejouable dans la planche 04. Voici à quoi il ressemble dans l'interface n8n :
-          </p>
-        </div>
-        <div style="margin-top:24px;border:1px solid var(--rule);border-radius:8px;overflow:hidden">
-          <img src="assets/img/animation/n8n-workflow.png" alt="Workflow n8n — audit multi-agents avec 18 nœuds" style="width:100%;height:auto;display:block">
-        </div>
-      </section>
-
-      <section>
-        <div class="section-rule">
           <h3>Le document, en entier</h3>
           <span class="line"></span>
         </div>
@@ -835,6 +813,24 @@
           d'abord dix-huit signaux, puis en faisant raisonner trois agents spécialisés qu'un quatrième arbitre.
         </p>
       </header>
+
+      <section>
+        <div class="section-rule">
+          <h3>Le workflow d'audit multi-agents</h3>
+          <span class="line"></span>
+        </div>
+        <div class="prose">
+          <p>
+            En complément du cours sur les fonctions, j'ai construit un workflow n8n complet qui automatise
+            l'audit de sites web que je faisais manuellement. Dix-huit nœuds orchestrent quatre agents
+            spécialisés qui analysent en parallèle la visibilité locale, le parcours de conversion et la
+            conformité déontologique d'un cabinet.
+          </p>
+        </div>
+        <div style="margin-top:24px;border:1px solid var(--rule);border-radius:8px;overflow:hidden">
+          <img src="assets/img/animation/n8n-workflow.png" alt="Workflow n8n — audit multi-agents avec 18 nœuds" style="width:100%;height:auto;display:block">
+        </div>
+      </section>
 
       <div class="console-bar" style="border:1px solid var(--rule);border-radius:6px">
         <label for="dossierSelect">Dossier de démonstration</label>
@@ -910,47 +906,180 @@
                 <div class="chantier">
                   <span class="rank">03</span>
                   <div>
-                    <h4>Rétablir une urgence perceptible sur la prise de contact</h4>
-                    <p>Un formulaire est le mode le moins urgent. La soixantaine d'arrivants mensuels mérite un bouton d'appel au-dessus de la ligne de flottaison.</p>
+                    <h4>Ouvrir une voie de contact écrite</h4>
+                    <p>Un formulaire court capte les demandes qui n'appelleront jamais — successions, questions sensibles, horaires de bureau.</p>
                   </div>
-                  <span class="effort">3 j · impact moyen</span>
+                  <span class="effort">1 j · impact moyen</span>
                 </div>
               </div>
+              <p class="disclaimer"><b>Points à faire valider par l'ordre compétent :</b> nom de domaine et intitulé du site au regard de la charte de nommage du CSN.</p>
             </div>
           </div>
         </div>
       </div>
+      <p class="mono" id="runMeta" style="color:var(--ink-3)"></p>
 
       <section>
         <div class="section-rule">
-          <h3>Le workflow complet</h3>
+          <h3>Pourquoi quatre agents plutôt qu'un seul</h3>
           <span class="line"></span>
         </div>
-        <div class="prose">
-          <p>
-            Le fichier JSON téléchargeable ci-dessus contient tout le workflow : les
-            dix-huit nœuds, leurs connexions, les quatre consignes d'agents, les deux analyseurs de sortie
-            structurée et l'aiguillage. Pour le rejouer chez vous, deux chemins : le bouton
-            <em>Copier le workflow</em> place le JSON dans le presse-papier — il suffit de le coller dans un
-            canevas n8n vide ; <em>Télécharger le JSON</em> enregistre le fichier, à reprendre avec
-            <span class="mono">Import from File</span> dans n8n.
-          </p>
-          <p class="disclaimer">
-            <b>Ce qui a été retiré avant publication :</b> les identifiants de connexion Gmail et Google Sheets,
-            ainsi que l'identifiant du classeur d'archivage — c'est une adresse vers un document privé.
-            Remplacez-les par les vôtres à l'import. Tout le reste est intact.
-          </p>
-
-          <footer style="border-top:1px solid var(--rule);padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between">
-            <p class="prose" style="margin:0;font-size:16px">
-              Arthur Parois — <a href="mailto:arthur270.parois@gmail.com" style="color:var(--accent-ink)">arthur270.parois@gmail.com</a>
-              · 06 22 99 86 63 ·
-              <a href="https://github.com/arthurparoisgithu" target="_blank" rel="noopener" style="color:var(--accent-ink)">github.com/arthurparoisgithu</a>
+        <div class="grid-3">
+          <div class="cell">
+            <span class="k">Un agent = un référentiel</span>
+            <p>
+              Un modèle unique à qui l'on demande « audite ce site » produit une liste plate et mélangée.
+              Trois agents porteurs chacun d'un barème séparé produisent trois notes comparables d'un
+              cabinet à l'autre.
             </p>
-            <p class="mono" style="color:var(--ink-3);margin:0">Dossier de candidature — alternance Alegria Academy</p>
-          </footer>
+          </div>
+          <div class="cell">
+            <span class="k">Le superviseur arbitre</span>
+            <p>
+              Il fusionne les constats qui désignent la même cause sous deux vocabulaires, pondère
+              (conversion 45 %, visibilité 35 %, conformité 20 %) et classe par impact divisé par
+              effort — pas par gravité.
+            </p>
+          </div>
+          <div class="cell">
+            <span class="k">Le garde-fou est écrit</span>
+            <p>
+              Chaque agent a l'interdiction explicite d'inventer un chiffre : une information absente
+              des signaux se dit « non mesuré ». Et le superviseur n'a pas le droit de promettre
+              « +40 % de rendez-vous ».
+            </p>
+          </div>
         </div>
       </section>
+
+      <section>
+        <div class="section-rule">
+          <h3>Les consignes réellement écrites dans les nœuds</h3>
+          <span class="line"></span>
+        </div>
+        <div class="stack-tight">
+
+          <details class="prompt-block">
+            <summary>Agent 2 — Conversion<span class="tagline">system message</span></summary>
+            <div class="prompt-body">
+<pre>Tu es l'agent CONVERSION du cabinet WebReset. Tu mesures une seule chose :
+la distance entre l'arrivée d'un visiteur et la prise de contact.
+
+Thèse maison, que tu appliques : un site de cabinet échoue presque toujours
+parce qu'il décrit une activité au lieu de déclencher un rendez-vous.
+
+Règles absolues :
+1. Tu ne juges QUE les signaux fournis ; sinon « non mesuré ».
+2. Tu comptes les frictions : absence de téléphone cliquable, absence de
+   formulaire, absence de prise de RDV en ligne, appel à l'action absent du
+   premier écran, densité de texte institutionnel.
+3. Tu formules chaque problème en conséquence business (« un appel perdu sur
+   mobile »), jamais en vocabulaire de design.
+
+Barème /100 : chemin de contact évident (30), téléphone cliquable sur mobile (20),
+prise de RDV ou formulaire (25), promesse lisible en H1 (15), densité de texte
+raisonnable (10).
+
+Maximum 4 problèmes, le plus coûteux en premier.</pre>
+            </div>
+          </details>
+
+          <details class="prompt-block">
+            <summary>Agent 3 — Conformité ordinale<span class="tagline">system message</span></summary>
+            <div class="prompt-body">
+<pre>Tu es l'agent CONFORMITÉ du cabinet WebReset. Tu vérifies qu'un site de
+profession réglementée française reste dans son cadre déontologique.
+
+Référentiels que tu connais et que tu cites nommément :
+— notaire : charte de nommage et de communication du CSN, usage encadré du logo
+  Notaires de France et de la Marianne, contrôle a posteriori par la chambre.
+— avocat : RIN, article 10 — communication autorisée mais sans démarchage
+  personnalisé ni mention comparative ou laudative.
+— expert-comptable / CGP : information sobre et vérifiable, pas de promesse
+  de performance.
+— tous : mentions légales complètes, politique de confidentialité, consentement
+  cookies avant dépôt de traceurs.
+
+Règles absolues :
+1. Tu ne signales que ce que les signaux permettent d'établir. Une absence de
+   preuve se dit « à vérifier manuellement », jamais « non conforme ».
+2. Tu n'es pas juriste et tu l'écris : tes constats sont des points de vigilance
+   à faire valider par l'ordre compétent.</pre>
+            </div>
+          </details>
+
+          <details class="prompt-block">
+            <summary>Agent 4 — Superviseur<span class="tagline">system message</span></summary>
+            <div class="prompt-body">
+<pre>Tu es le SUPERVISEUR. Tu reçois trois rapports d'agents spécialisés et tu
+produis le document qu'un associé de cabinet lira en trois minutes.
+
+Travail attendu :
+1. Arbitrer les désaccords. Si deux agents pointent la même cause avec des mots
+   différents, tu fusionnes en un seul chantier.
+2. Calculer le score global : visibilité 35 %, conversion 45 %, conformité 20 %.
+   La conversion pèse le plus parce que c'est elle qui produit des rendez-vous.
+3. Prioriser par (impact ÷ effort), pas par gravité. Un correctif à 30 minutes
+   qui débloque le téléphone passe devant une refonte sémantique.
+4. Écrire pour un lecteur non technique : aucune mention de balise, de framework
+   ou de composant dans le plan d'action. Des conséquences et des délais.
+5. Ne jamais promettre un résultat chiffré (« +40 % de rendez-vous »). WebReset
+   n'a pas encore l'historique client qui le permettrait.
+
+Ton : direct, précis, sans flatterie. Trois chantiers maximum.</pre>
+            </div>
+          </details>
+
+          <details class="prompt-block">
+            <summary>Nœud Code — extraction des signaux<span class="tagline">JavaScript</span></summary>
+            <div class="prompt-body">
+<pre>// Extrait les signaux mesurables AVANT de faire parler un modèle.
+// Les agents raisonnent sur des faits, pas sur du HTML brut.
+const html = $json.body ?? '';
+const texte = html.replace(/&lt;script[\s\S]*?&lt;\/script&gt;/gi, ' ')
+                  .replace(/&lt;style[\s\S]*?&lt;\/style&gt;/gi, ' ')
+                  .removeTags();
+
+const faits = {
+  title:            pick(/&lt;title[^&gt;]*&gt;([\s\S]*?)&lt;\/title&gt;/i),
+  metaDescription:  pick(/&lt;meta[^&gt;]+name=["']description["'][^&gt;]+content=["']([^"']*)/i),
+  h1:               all(/&lt;h1[^&gt;]*&gt;([\s\S]*?)&lt;\/h1&gt;/gi),
+  nbImagesSansAlt:  (html.match(/&lt;img(?![^&gt;]*\balt=)/gi) ?? []).length,
+  telCliquable:     /href=["']tel:/i.test(html),
+  priseRdvEnLigne:  /(doctolib|calendly|prendre rendez-?vous)/i.test(texte),
+  rgpd:             /(politique de confidentialit[ée]|rgpd)/i.test(texte),
+  cookiesBanniere:  /(tarteaucitron|axeptio|cookieconsent|didomi)/i.test(html),
+  motsVisibles:     texte.split(' ').filter(Boolean).length
+  // ... 18 signaux au total
+};</pre>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+      <p class="note">
+        <strong>Le fichier est l'export réel du workflow.</strong> Il sort de l'instance n8n où il tourne :
+        dix-huit nœuds, leurs connexions, les quatre consignes d'agents, les deux analyseurs de sortie
+        structurée et l'aiguillage. Pour le rejouer chez vous, deux chemins : le bouton
+        <em>Copier le workflow</em> place le JSON dans le presse-papier — il suffit de le coller dans un
+        canevas n8n vide ; <em>Télécharger le JSON</em> enregistre le fichier, à reprendre avec
+        <span class="mono">Import from File</span> dans n8n.
+      </p>
+      <p class="disclaimer">
+        <b>Ce qui a été retiré avant publication :</b> les identifiants de connexion Gmail et Google Sheets,
+        ainsi que l'identifiant du classeur d'archivage — c'est une adresse vers un document privé.
+        Remplacez-les par les vôtres à l'import. Tout le reste est intact.
+      </p>
+
+      <footer style="border-top:1px solid var(--rule);padding-top:22px;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:space-between">
+        <p class="prose" style="margin:0;font-size:16px">
+          Arthur Parois — <a href="mailto:arthur270.parois@gmail.com" style="color:var(--accent-ink)">arthur270.parois@gmail.com</a>
+          · 06 22 99 86 63 ·
+          <a href="https://github.com/arthurparoisgithu" target="_blank" rel="noopener" style="color:var(--accent-ink)">github.com/arthurparoisgithu</a>
+        </p>
+        <p class="mono" style="color:var(--ink-3);margin:0">Dossier de candidature — alternance Alegria Academy</p>
+      </footer>
 
     </div>
   </section>
